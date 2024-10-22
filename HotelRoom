@@ -1,0 +1,54 @@
+import java.util.Scanner;
+	
+public class HotelRoom {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String month = scanner.nextLine();
+        int nights = scanner.nextInt();
+
+        double studioPrice = 0;
+        double apartmentPrice = 0;
+
+        switch (month) {
+            case "May":
+            case "October":
+                studioPrice = 50;
+                apartmentPrice = 65;
+                if (nights > 14) {
+                    studioPrice *= 0.7; // 30% discount
+                } else if (nights > 7) {
+                    studioPrice *= 0.95; // 5% discount
+                }
+                break;
+            case "June":
+            case "September":
+                studioPrice = 75.20;
+                apartmentPrice = 68.70;
+                if (nights > 14) {
+                    studioPrice *= 0.8; // 20% discount
+                }
+                break;
+            case "July":
+            case "August":
+                studioPrice = 76;
+                apartmentPrice = 77;
+                break;
+            default:
+                System.out.println("Invalid month");
+                return;
+        }
+
+        double totalStudioCost = studioPrice * nights;
+        double totalApartmentCost = apartmentPrice * nights;
+
+        if (nights > 14) {
+            totalApartmentCost *= 0.9; // 10% discount
+        }
+
+        System.out.printf("Apartment: %.2f lv.%n", totalApartmentCost);
+        System.out.printf("Studio: %.2f lv.%n", totalStudioCost);
+
+        scanner.close();
+    }
+}
